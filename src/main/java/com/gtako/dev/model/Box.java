@@ -34,4 +34,18 @@ public class Box {
     public void setTerrainType(int terrainType) {
         this.terrainType = terrainType;
     }
+
+    @Override
+    public String toString() {
+        if (terrainType == -1) {
+            return "M";
+        } else if (terrainType == 0) {
+            return "•"; // Alt + 7
+        } else if (terrainType > 0) {
+            return "T";
+        }
+
+        return "";
+    }
+
 }
