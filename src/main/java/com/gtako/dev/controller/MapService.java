@@ -4,6 +4,7 @@ import com.gtako.dev.model.Adventurer;
 import com.gtako.dev.model.Box;
 
 import java.util.List;
+import java.util.Map;
 
 public class MapService {
 
@@ -19,7 +20,11 @@ public class MapService {
         box[positionX][positionY].setTerrainType(  box[positionX][positionY].getTerrainType() + treasureCount);
     }
 
-    public void addAdventurer(List<Adventurer> adventurers, Adventurer adventurer) {
+    /*public void addAdventurer(List<Adventurer> adventurers, Adventurer adventurer) {
         adventurers.add(adventurer);
+    }*/
+
+    public void addAdventurer(Map<Adventurer, Boolean> adventurers, Adventurer adventurer) {
+        adventurers.put(adventurer, !adventurer.getMovements().isEmpty());
     }
 }

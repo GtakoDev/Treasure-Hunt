@@ -4,6 +4,7 @@ public class Adventurer {
     private String name;
     private int positionX;
     private int positionY;
+    private int numberOfCollectedTreasures;
     private Orientation orientation;
     private String movements;
 
@@ -13,6 +14,7 @@ public class Adventurer {
         this.positionY = positionY;
         this.orientation = orientation;
         this.movements = movements;
+        this.numberOfCollectedTreasures = 0;
     }
 
     public String getName() {
@@ -53,5 +55,25 @@ public class Adventurer {
 
     public void setMovements(String movements) {
         this.movements = movements;
+    }
+
+    public int getNumberOfCollectedTreasures() {
+        return numberOfCollectedTreasures;
+    }
+
+    public void setNumberOfCollectedTreasures(int numberOfCollectedTreasures) {
+        this.numberOfCollectedTreasures = numberOfCollectedTreasures;
+    }
+
+    @Override
+    public String toString() {
+        return "Adventurer{" +
+                "name='" + name + '\'' +
+                ", positionX=" + positionX +
+                ", positionY=" + positionY +
+                ", numberOfCollectedTreasures=" + numberOfCollectedTreasures +
+                ", orientation=" + orientation +
+                ", movements='" + movements + '\'' +
+                '}';
     }
 }

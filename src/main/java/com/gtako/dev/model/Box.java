@@ -4,11 +4,13 @@ public class Box {
     private int positionX;
     private int positionY;
     private int terrainType; // -1 = Mountain, 0 = Plain, > 0 = number of treasures
+    private Adventurer adventurer;
 
     public Box(int positionX, int positionY, int terrainType) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.terrainType = terrainType;
+        this.adventurer = null;
     }
 
     public int getPositionX() {
@@ -35,14 +37,24 @@ public class Box {
         this.terrainType = terrainType;
     }
 
+    public Adventurer getAdventurer() {
+        return adventurer;
+    }
+
+    public void setAdventurer(Adventurer adventurer) {
+        this.adventurer = adventurer;
+    }
+
     @Override
     public String toString() {
-        if (terrainType == -1) {
+        if (adventurer != null) {
+            return "A(" + adventurer.getName() + ")";
+        } else if (terrainType == -1) {
             return "M";
         } else if (terrainType == 0) {
             return "•"; // Alt + 7
         } else if (terrainType > 0) {
-            return "T";
+            return "T(" + terrainType + ")" ;
         }
 
         return "";

@@ -1,5 +1,5 @@
 import com.gtako.dev.controller.GameService;
-import com.gtako.dev.model.Map;
+import com.gtako.dev.model.Game;
 
 public class Main {
 
@@ -7,11 +7,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Map map = gameService.initializeGame("Treasure_Hunt_2.txt");
+        // Initialize the game
+        Game game = gameService.initializeGame("Treasure_Hunt_2.txt");
 
-        if (map != null) {
-            System.out.println(map.toString());
+        if (game != null) {
+            System.out.println("initial map");
+            System.out.println(game.toString());
         }
+
+        // Execute Adventurers moves
+        gameService.run(game);
+
+        // Generate Final Result
 
 
     }
