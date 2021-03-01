@@ -3,8 +3,12 @@ package com.gtako.dev.controller;
 import com.gtako.dev.model.Adventurer;
 import com.gtako.dev.model.Game;
 import com.gtako.dev.model.Orientation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AdventurerService {
+
+    private static final Logger logger = LogManager.getLogger(AdventurerService.class);
 
     public void turnRight(Adventurer adventurer) {
         switch (adventurer.getOrientation()) {
@@ -33,7 +37,7 @@ public class AdventurerService {
                     game.getMap()[adventurer.getPositionX()][adventurer.getPositionY()].setAdventurer(null);
                     decrementY(adventurer);
                 } else {
-                    System.out.println("Impossible de se déplacer au nord");
+                    logger.error(String.format("Impossible de déplacer l'aventurier %s au nord", adventurer.getName()));
                 }
             }
             case EAST -> {
@@ -41,7 +45,7 @@ public class AdventurerService {
                     game.getMap()[adventurer.getPositionX()][adventurer.getPositionY()].setAdventurer(null);
                     incrementX(adventurer);
                 } else {
-                    System.out.println("Impossible de se déplacer a l'est");
+                    logger.error(String.format("Impossible de déplacer l'aventurier %s a l'est", adventurer.getName()));
                 }
 
             }
@@ -50,7 +54,7 @@ public class AdventurerService {
                     game.getMap()[adventurer.getPositionX()][adventurer.getPositionY()].setAdventurer(null);
                     incrementY(adventurer);
                 } else {
-                    System.out.println("Impossible de se déplacer au sud");
+                    logger.error(String.format("Impossible de déplacer l'aventurier %s au sud", adventurer.getName()));
                 }
             }
             case WEST -> {
@@ -58,7 +62,7 @@ public class AdventurerService {
                     game.getMap()[adventurer.getPositionX()][adventurer.getPositionY()].setAdventurer(null);
                     decrementX(adventurer);
                 } else {
-                    System.out.println("Impossible de se déplacer a l'ouest");
+                    logger.error(String.format("Impossible de déplacer l'aventurier %s a l'ouest", adventurer.getName()));
                 }
             }
             default -> throw new RuntimeException("valeur de l'orientation invalide");
