@@ -1,5 +1,10 @@
 package com.gtako.dev.utils;
 
+/**
+ * Classe qui définit les constantes de l'application
+ *
+ * @author Guillaume T.
+ */
 public class AppConst {
 
     public static final String APP_DIR = System.getProperty("user.dir");

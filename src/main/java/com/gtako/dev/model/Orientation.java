@@ -1,5 +1,10 @@
 package com.gtako.dev.model;
 
+/**
+ * Classe qui définit le modèle de l'orientation
+ *
+ * @author Guillaume T.
+ */
 public enum Orientation {
     NORTH("N"),
     EAST("E"),

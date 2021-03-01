@@ -1,33 +1,22 @@
 package com.gtako.dev.model;
 
+/**
+ * Classe qui définit le modèle d'un case de la carte
+ *
+ * @author Guillaume T.
+ */
 public class Box {
-    private int positionX;
-    private int positionY;
     private int terrainType; // -1 = Mountain, 0 = Plain, > 0 = number of treasures
     private Adventurer adventurer;
 
-    public Box(int positionX, int positionY, int terrainType) {
-        this.positionX = positionX;
-        this.positionY = positionY;
+    public Box(int terrainType) {
         this.terrainType = terrainType;
         this.adventurer = null;
     }
 
-    public int getPositionX() {
-        return positionX;
-    }
-
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
-    public int getPositionY() {
-        return positionY;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
-    }
+    /*****************************
+     * GETTERS ET SETTERS
+     *****************************/
 
     public int getTerrainType() {
         return terrainType;
@@ -37,13 +26,13 @@ public class Box {
         this.terrainType = terrainType;
     }
 
-    public Adventurer getAdventurer() {
-        return adventurer;
-    }
-
     public void setAdventurer(Adventurer adventurer) {
         this.adventurer = adventurer;
     }
+
+    /*****************************
+     * METHODES OVERRIDES
+     *****************************/
 
     @Override
     public String toString() {
@@ -59,5 +48,4 @@ public class Box {
 
         return "";
     }
-
 }

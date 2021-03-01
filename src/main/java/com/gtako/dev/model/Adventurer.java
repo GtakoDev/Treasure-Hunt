@@ -1,7 +1,12 @@
 package com.gtako.dev.model;
 
+/**
+ * Classe qui définit le modèle d'un Aventurier
+ *
+ * @author Guillaume T.
+ */
 public class Adventurer {
-    private String name;
+    private final String name;
     private int positionX;
     private int positionY;
     private int numberOfCollectedTreasures;
@@ -17,12 +22,12 @@ public class Adventurer {
         this.numberOfCollectedTreasures = 0;
     }
 
+    /*****************************
+     * GETTERS ET SETTERSs
+     *****************************/
+
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getPositionX() {
@@ -65,15 +70,19 @@ public class Adventurer {
         this.numberOfCollectedTreasures = numberOfCollectedTreasures;
     }
 
+    /*****************************
+     * METHODES OVERRIDE
+     *****************************/
+
     @Override
     public String toString() {
         return "Adventurer{" +
-                "name='" + name + '\'' +
+                "nom='" + name + '\'' +
                 ", positionX=" + positionX +
                 ", positionY=" + positionY +
-                ", numberOfCollectedTreasures=" + numberOfCollectedTreasures +
+                ", nombre de trésors collectés=" + numberOfCollectedTreasures +
                 ", orientation=" + orientation +
-                ", movements='" + movements + '\'' +
+                ", séquence de mouvements='" + movements + '\'' +
                 '}';
     }
 }

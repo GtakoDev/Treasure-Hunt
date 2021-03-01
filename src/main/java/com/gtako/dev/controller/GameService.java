@@ -12,19 +12,26 @@ import java.io.*;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Classe qui définit les méthodes concernant le jeu
+ *
+ * @author Guillaume T.
+ */
 public class GameService {
-
     private static final Logger logger = LogManager.getLogger(GameService.class);
-
     private final MapService mapService = new MapService();
     private final AdventurerService adventurerService = new AdventurerService();
     private final BoxService boxService = new BoxService();
     private final OrientationService orientationService = new OrientationService();
 
-
+    /**
+     * Initialize le jeu a partir d'un fichier et le retourne
+     *
+     * @param configFileName nom du fichier
+     * @return le jeu
+     */
     public Game initializeGame(String configFileName) {
-
-        logger.debug("Game Initialization starts.");
+        logger.debug("Début de l'initialisation de la partie.");
         Game game = new Game();
 
         try (Scanner scanner = new Scanner(new File(AppConst.RESOURCE_DIR + configFileName))) {
@@ -69,7 +76,7 @@ public class GameService {
                 }
 
             }
-            logger.debug("Game initialization done.");
+            logger.debug("Fin de l'initialisation de la partie.");
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
             return null;
@@ -78,9 +85,14 @@ public class GameService {
         return game;
     }
 
+    /**
+     * Execute les mouvements de chaque aventuriers jusqu'a au tour par tour
+     *
+     * @param game le jeu
+     */
     public void run(Game game) {
 
-        logger.info("Game Starts.");
+        logger.info("Début de la phase de jeu.");
         boolean endOfTheGame = false;
 
         while (!endOfTheGame) {
@@ -93,7 +105,7 @@ public class GameService {
                     case 'A' -> adventurerService.moveForward(entry.getKey(), game);
                     case 'D' -> adventurerService.turnRight(entry.getKey());
                     case 'G' -> adventurerService.turnLeft(entry.getKey());
-                    default -> throw new RuntimeException("Wrong move letter has been detected");
+                    default -> throw new RuntimeException("Une lettre non reconnue à été détectée dans le mouvement du personnage. Elle sera ignorée.");
                 }
 
                 if (moves.length() == 1) {
@@ -104,17 +116,21 @@ public class GameService {
                 }
             }
 
-            System.out.println(game.toString());
-
+            logger.info(String.format("%n%s",game.toString()));
             endOfTheGame = game.getAdventurers().values().stream().allMatch(Boolean.FALSE::equals);
 
         }
 
-        logger.info("Game ends.");
+        logger.info("Fin de la phase de jeu.");
     }
 
+    /**
+     * Génère un fichier contenant le résultat final de la partie joué
+     * 
+     * @param game
+     */
     public void generateResult(Game game) {
-        logger.debug("Generating final game result output file.");
+        logger.debug("Début de la génération du fichier de résultat du jeu.");
         try {
             FileWriter fileWriter = new FileWriter(AppConst.RESOURCE_DIR + "Treasure_Hunt_Result.txt");
             PrintWriter printWriter = new PrintWriter(fileWriter);
@@ -148,10 +164,9 @@ public class GameService {
             }
 
             printWriter.close();
-            logger.debug("Final game result output file generated.");
+            logger.debug("Fin de la génération du fichier de résulat du jeu.");
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
-
     }
 }
